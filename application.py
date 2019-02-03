@@ -1,14 +1,49 @@
 #!/usr/bin/env python
 from flask import Flask
 
+# importing SqlAlchemy
+from sqlalchemy import create_engine
+from sqlalchemy.orm import sessionmaker
+from database_setup import Base, User, Movie
+
 app = Flask(__name__)
 
+# Connect to Database and create database session
+connect_args = {'check_same_thread': False}
+engine = create_engine('sqlite:///MovieCatalog.db',connect_args=connect_args)
+#engine = create_engine('sqlite:///MovieCatalog.db')
+Base.metadata.bind = engine
+
+DBSession = sessionmaker(bind=engine)
+session = DBSession()
 
 # Main page to show movies catalog
 @app.route('/')
 @app.route('/catalog/')
 def showCatalog():
-    return "This is main movies catalog page."
+    movies = session.query(Movie).all()
+    output = ''
+    for movie in movies:
+        output += 'Movei Name: ' + movie.movieName
+        output += '</br>'
+        output += 'Director Name: ' + movie.directorName
+        output += '</br>'
+        output += 'Category: ' + movie.category
+        output += '</br>'
+        output += 'Description: ' + movie.description
+        output += '</br>'
+        output += 'Movie ID: ' + str(movie.id)
+        output += '</br>'
+        output += 'User Name: ' + movie.user.name
+        output += '</br>'
+        output += 'User Email: ' + movie.user.email
+        output += '</br>'
+        output += 'User ID: ' + str(movie.user.id)
+        output += '</br>'
+        output += '</br>'
+        output += '</br>'
+    #return "This is main movies catalog page."
+    return output
 
 # Query all movie items in one category
 @app.route('/catalog/<string:category>/')
