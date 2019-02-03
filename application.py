@@ -1,10 +1,13 @@
 #!/usr/bin/env python
-from flask import Flask
+from flask import Flask, jsonify
 
 # importing SqlAlchemy
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from database_setup import Base, User, Movie
+
+#importing json
+import json
 
 app = Flask(__name__)
 
@@ -32,13 +35,13 @@ def showCatalog():
         output += '</br>'
         output += 'Description: ' + movie.description
         output += '</br>'
-        output += 'Movie ID: ' + str(movie.id)
+        output += 'Movie ID: ' + str(movie.movieID)
         output += '</br>'
         output += 'User Name: ' + movie.user.name
         output += '</br>'
         output += 'User Email: ' + movie.user.email
         output += '</br>'
-        output += 'User ID: ' + str(movie.user.id)
+        output += 'User ID: ' + str(movie.user.userID)
         output += '</br>'
         output += '</br>'
         output += '</br>'
@@ -74,15 +77,21 @@ def deleteMovie(category, movieID):
 #JSON endpoint
 @app.route('/catalog.json/')
 def catalogJSON():
-    return "This is the JSON for movie catalog."
+     movies = session.query(Movie).all()
+     return jsonify(Movies=[movie.serialize for movie in movies])
+     #return "This is the JSON for movie catalog."
 
 @app.route('/catalog/<string:category>.json/')
 def queryCategoryJSON(category):
-    return "This is the JSON to query all %s movie items in catalog." % category
+    movies = session.query(Movie).filter_by(category=category).all()
+    return jsonify(Movies=[movie.serialize for movie in movies])
+    #return "This is the JSON to query all %s movie items in catalog." % category
 
 @app.route('/catalog/<string:category>/<int:movieID>.json/')
 def movieJSON(category, movieID):
-    return "This is the JSON to show the detail of %s movie item "% category + str(movieID)
+    movie = session.query(Movie).filter_by(category=category, movieID=movieID).first()
+    return jsonify(Movie=movie.serialize)
+    #return "This is the JSON to show the detail of %s movie item "% category + str(movieID)
 
 # Login to modify the movie catalog
 @app.route('/login')
