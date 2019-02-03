@@ -1,0 +1,24 @@
+<html>
+<body>
+<h1>Welcome to Movie Catalog</h1>
+
+{% for movie in movies %}
+
+<div>
+<ul>{{movie.movieName}}</ul>
+<ul>{{movie.directorName}}</ul>
+<ul> {{movie.category}} </ul>
+<ul> {{movie.description}} </ul>
+<ul>{{movie.movieID}}</ul>
+<ul>{{movie.user.name}}</ul>
+<ul> {{movie.user.email}} </ul>
+<ul> {{movie.user.userID}} </ul>
+<ul> ************************ </ul>
+</br>
+</div>
+
+
+{% endfor %}
+</body>
+
+</html>

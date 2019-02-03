@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-from flask import Flask, jsonify
+from flask import Flask, jsonify, render_template
 
 # importing SqlAlchemy
 from sqlalchemy import create_engine
@@ -25,28 +25,29 @@ session = DBSession()
 @app.route('/catalog/')
 def showCatalog():
     movies = session.query(Movie).all()
-    output = ''
-    for movie in movies:
-        output += 'Movei Name: ' + movie.movieName
-        output += '</br>'
-        output += 'Director Name: ' + movie.directorName
-        output += '</br>'
-        output += 'Category: ' + movie.category
-        output += '</br>'
-        output += 'Description: ' + movie.description
-        output += '</br>'
-        output += 'Movie ID: ' + str(movie.movieID)
-        output += '</br>'
-        output += 'User Name: ' + movie.user.name
-        output += '</br>'
-        output += 'User Email: ' + movie.user.email
-        output += '</br>'
-        output += 'User ID: ' + str(movie.user.userID)
-        output += '</br>'
-        output += '</br>'
-        output += '</br>'
+    #output = ''
+    #for movie in movies:
+        #output += 'Movei Name: ' + movie.movieName
+        #output += '</br>'
+        #output += 'Director Name: ' + movie.directorName
+        #output += '</br>'
+        #output += 'Category: ' + movie.category
+        #output += '</br>'
+        #output += 'Description: ' + movie.description
+        #output += '</br>'
+        #output += 'Movie ID: ' + str(movie.movieID)
+        #output += '</br>'
+        #output += 'User Name: ' + movie.user.name
+        #output += '</br>'
+        #output += 'User Email: ' + movie.user.email
+        #output += '</br>'
+        #output += 'User ID: ' + str(movie.user.userID)
+        #output += '</br>'
+        #output += '</br>'
+        #output += '</br>'
     #return "This is main movies catalog page."
-    return output
+    #return output
+    return render_template('main.html', movies=movies)
 
 # Query all movie items in one category
 @app.route('/catalog/<string:category>/')
