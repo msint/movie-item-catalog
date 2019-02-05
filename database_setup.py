@@ -21,7 +21,7 @@ class User(Base):
 class Movie(Base):
     __tablename__ = "movie"
 
-    id = Column(Integer, primary_key=True)
+    movieID = Column(Integer, primary_key=True)
     movieName = Column(String(250), nullable=False)
     directorName = Column(String(250), nullable=False)
     category = Column(String(100), nullable=False)
@@ -34,7 +34,7 @@ class Movie(Base):
         # return movie data in serializable format
         """Return movie object data in easily serializeable format"""
         return {
-            'id': self.id,
+            'movieID': self.movieID,
             'movieName': self.movieName,
             'directorName': self.directorName,
             'category': self.category,

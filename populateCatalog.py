@@ -29,8 +29,8 @@ session.commit()
 movie1 = Movie(movieName="Princess Agents",
                directorName="Wu Jinyuan",
                category="Historical Fiction",
-               description="In a time of civil war, a slave enters the royal \
-               household and starts training to become a soldier.",
+               description="In a time of civil war, a maid enters the royal "\
+               + "household and starts training to become a soldier.",
                userId=1)
 session.add(movie1)
 session.commit()
@@ -47,8 +47,8 @@ session.commit()
 movie3 = Movie(movieName="The Fast and the Furious",
                directorName="Vin Diesel",
                category="Action",
-               description="The Fast and the Furious is an American street \
-               racing action film.",
+               description="The Fast and the Furious is an American street "\
+               + "racing action film.",
                userId=1)
 session.add(movie3)
 session.commit()
@@ -56,7 +56,7 @@ session.commit()
 movie4 = Movie(movieName="A Star is Born",
                directorName="Bradley Cooper",
                category="Romance",
-               description="A Star is Born is an romantic drama movie.",
+               description="A Star is Born is a romantic drama movie.",
                userId=1)
 session.add(movie4)
 session.commit()

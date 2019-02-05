@@ -13,3 +13,8 @@
 	padding-top: 30px;
 	padding-bottom: 30px;
 }
+.flash {
+	background-color: #98FB98;
+	width:100%;
+	text-decoration: none;
+}
