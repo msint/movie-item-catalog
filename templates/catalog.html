@@ -1,0 +1,19 @@
+{% extends "mainPage.html" %}
+{% block content %}
+{% include "header.html" %}
+
+{% for movie in movies %}
+  <div>
+    <ul> {{movie.movieName}} </ul>
+    <ul> {{movie.directorName}} </ul>
+    <ul> {{movie.category}} </ul>
+    <ul> {{movie.description}} </ul>
+    <ul> {{movie.movieID}} </ul>
+    <ul> {{movie.user.name}} </ul>
+    <ul> {{movie.user.email}} </ul>
+    <ul> {{movie.user.userID}} </ul>
+    <ul> ************************ </ul>
+    </br>
+  </div>
+{% endfor %}
+{% endblock %}

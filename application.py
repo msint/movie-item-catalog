@@ -25,29 +25,7 @@ session = DBSession()
 @app.route('/catalog/')
 def showCatalog():
     movies = session.query(Movie).all()
-    #output = ''
-    #for movie in movies:
-        #output += 'Movei Name: ' + movie.movieName
-        #output += '</br>'
-        #output += 'Director Name: ' + movie.directorName
-        #output += '</br>'
-        #output += 'Category: ' + movie.category
-        #output += '</br>'
-        #output += 'Description: ' + movie.description
-        #output += '</br>'
-        #output += 'Movie ID: ' + str(movie.movieID)
-        #output += '</br>'
-        #output += 'User Name: ' + movie.user.name
-        #output += '</br>'
-        #output += 'User Email: ' + movie.user.email
-        #output += '</br>'
-        #output += 'User ID: ' + str(movie.user.userID)
-        #output += '</br>'
-        #output += '</br>'
-        #output += '</br>'
-    #return "This is main movies catalog page."
-    #return output
-    return render_template('main.html', movies=movies)
+    return render_template('catalog.html', movies=movies)
 
 # Query all movie items in one category
 @app.route('/catalog/<string:category>/')
@@ -105,12 +83,12 @@ def logout():
     return "This is to logout of movie catalog."
 
 # google signin
-@app.route('/gconnect', methods=['POST'])
+@app.route('/fbConnect', methods=['POST'])
 def gConnect():
     return "Signin to movie catalog with google account."
 
 # Signout of movie catalog
-@app.route('/gdisconnect')
+@app.route('/fbDisconnect')
 def gdisconnect():
     return "Signout of movie catalog."
 
