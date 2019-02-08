@@ -1,0 +1,70 @@
+{% extends "mainPage.html" %}
+{% block content %}
+{% include "header.html" %}
+{% include "flash.html" %}
+
+<h1 class="header">Create New Movie Item</h1>
+<form action="{{url_for('newMovie')}}"
+  method="POST">
+  <label for="movieName">Movie Name:</label>
+  <input type ="text" maxlength="30" class="form-control" name="movieName" placeholder="Movie's Name">
+
+  <label for="directorName">Director Name:</label>
+  <input type ="text" maxlength="30" class="form-control" name="directorName" placeholder="Director's Name">
+
+  <label for="description">Description:</label>
+  <textarea class="form-control" maxlength="250" rows="3" name="description" placeholder="Description of the movie"></textarea>
+
+  <label for="category">Genres:</label>
+  <div class="radio">
+    <label>
+      <input type="radio" name="category" id="category1" value="Historical Fiction">Historical Fiction
+    </label>
+  </div>
+  <div class="radio">
+    <label>
+      <input type="radio" name="category" id="category2" value="Drama">Drama
+    </label>
+  </div>
+  <div class="radio">
+    <label>
+      <input type="radio" name="category" id="category3" value="Action">Action
+    </label>
+  </div>
+  <div class="radio">
+    <label>
+      <input type="radio" name="category" id="category4" value="Romance">Romance
+    </label>
+  </div>
+  <div class="radio">
+    <label>
+      <input type="radio" name="category" id="category5" value="Sport">Sport
+    </label>
+  </div>
+  <div class="radio">
+    <label>
+      <input type="radio" name="category" id="category6" value="Crime">Crime
+    </label>
+  </div>
+  <div class="radio">
+    <label>
+      <input type="radio" name="category" id="category7" value="Comedy">Comedy
+    </label>
+  </div>
+  <div class="radio">
+    <label>
+      <input type="radio" name="category" id="category8" value="Adventure">Adventure
+    </label>
+  </div>
+  <div class="radio">
+    <label>
+      <input type="radio" name="category" id="category9" value="Travel">Travel
+    </label>
+  </div>
+  </br>
+  <input type="submit" value ="create">
+  <a href = "{{url_for('showCatalog')}}"><button type="button">Cancel</button></a>
+  </br></br>
+</form>
+
+{% endblock %}

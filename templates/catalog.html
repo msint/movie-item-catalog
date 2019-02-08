@@ -1,31 +1,27 @@
 {% extends "mainPage.html" %}
 {% block content %}
 {% include "header.html" %}
-<div class = 'flash'>
-    {% with messages = get_flashed_messages() %}
-      {% if messages %}
+{% include "flash.html" %}
 
+<aside id="sidebar">
+  <h3> Categories: </h3>
+    {% for category in categories %}
       <ul>
-      {% for message in messages %}
-          <li> <strong> {{ message }} </strong> </li>
-      {% endfor %}
+         <a href = "{{url_for('queryCategory', category = category)}}">{{category}}</a>
       </ul>
-      {% endif %}
-  {% endwith %}
-</div>
+    {% endfor %}
+</aside>
+<section>
+  <p>
+     <a href = "{{url_for('newMovie')}}"> Add New Movie Item </a>
+  </p>
+  <h3> Latest Items </h3>
+    {% for movie in latestMovies %}
+      <ul>
+        <a href = "{{url_for('movieDetail', category = movie.category, movieID = movie.movieID)}}">{{movie.movieName}} ( {{movie.category}} )</a>
+      </ul>
+    {% endfor %}
+</section>
 
-{% for movie in movies %}
-  <div>
-    <ul> {{movie.movieName}} </ul>
-    <ul> {{movie.directorName}} </ul>
-    <ul> {{movie.category}} </ul>
-    <ul> {{movie.description}} </ul>
-    <ul> {{movie.movieID}} </ul>
-    <ul> {{movie.user.name}} </ul>
-    <ul> {{movie.user.email}} </ul>
-    <ul> {{movie.user.id}} </ul>
-    <ul> ************************ </ul>
-    </br>
-  </div>
-{% endfor %}
+
 {% endblock %}

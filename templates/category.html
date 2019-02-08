@@ -15,7 +15,7 @@
     <h3> {{category}} </h3>
     {% for m in movieItems %}
       <ul>
-         {{m.movieName}}
+         <a href = "{{url_for('movieDetail', category=m.category, movieID=m.movieID)}}">{{m.movieName}}</a>
       </ul>
     {% endfor %}
 </section>

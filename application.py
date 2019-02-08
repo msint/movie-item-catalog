@@ -79,7 +79,34 @@ def movieDetail(category, movieID):
 # Add a new movie in the catalog
 @app.route('/catalog/new/', methods=['GET', 'POST'])
 def newMovie():
-    return "This is new movie page."
+    if 'username' in login_session:
+        # get input data from the form
+        if request.method == 'POST':
+            movieName=request.form['movieName']
+            directorName=request.form['directorName']
+            description=request.form['description']
+            category=request.form['category']
+            userId=login_session['userId']
+
+            if movieName and directorName and description and category:
+                newItem = Movie(movieName=movieName,
+                                directorName=directorName,
+                                description=description,
+                                category=category,
+                                userId=userId)
+                session.add(newItem)
+                session.commit()
+                flash("New movie item added!")
+                return redirect(url_for('showCatalog'))
+            else: # user did not fill all fields
+                flash("All fields are required!")
+                return render_template('newItem.html')
+        else:
+            return render_template('newItem.html')
+    else: # user not login yet
+        flash("Please login first to add new movie item.")
+        return redirect('/login')
+    #return "This is new movie page."
 
 # Edit the detail of one movie
 @app.route('/catalog/<string:category>/<int:movieID>/edit/', methods=['GET', 'POST'])
