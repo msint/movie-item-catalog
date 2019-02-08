@@ -116,7 +116,9 @@ def editMovie(category, movieID):
     #check if the user is the owner of this movie
     if editMovie.userId != login_session['userId']:
         flash("Sorry! You are not the owner of this movie. Only the owner can edit it.")
-        return redirect(url_for('showCatalog'))
+        #return redirect(url_for('showCatalog'))
+        return redirect(url_for('movieDetail', category=editMovie.category, \
+                                 movieID=editMovie.movieID))
 
     if request.method == 'POST':
         #if user makes any changes, replace the existing one
@@ -151,7 +153,23 @@ def editMovie(category, movieID):
 # Delete the movie
 @app.route('/catalog/<string:category>/<int:movieID>/delete/', methods=['GET', 'POST'])
 def deleteMovie(category, movieID):
-    return "This is to delete the %s movie " % category + str(movieID)
+    deleteMovie = session.query(Movie).filter_by(category=category, movieID=movieID).first()
+
+    #check if the user is the owner of this movie
+    if deleteMovie.userId != login_session['userId']:
+        flash("Sorry! You are not the owner of this movie. Only the owner can delete it.")
+        return redirect(url_for('movieDetail', category=deleteMovie.category, \
+                                 movieID=deleteMovie.movieID))
+        #return redirect(url_for('showCatalog'))
+
+    if request.method == 'POST':
+        session.delete(deleteMovie)
+        session.commit()
+        flash("Movie item deleted successfully!")
+        return redirect(url_for('showCatalog'))
+    else:
+        return render_template('deleteItem.html', movie=deleteMovie)
+    #return "This is to delete the %s movie " % category + str(movieID)
 
 #JSON endpoint
 @app.route('/catalog.json/')

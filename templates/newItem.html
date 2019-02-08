@@ -16,53 +16,21 @@
   <textarea class="form-control" maxlength="250" rows="3" name="description" placeholder="Description of the movie"></textarea>
 
   <label for="category">Genres:</label>
-  <div class="radio">
-    <label>
-      <input type="radio" name="category" id="category1" value="Historical Fiction">Historical Fiction
-    </label>
-  </div>
-  <div class="radio">
-    <label>
-      <input type="radio" name="category" id="category2" value="Drama">Drama
-    </label>
-  </div>
-  <div class="radio">
-    <label>
-      <input type="radio" name="category" id="category3" value="Action">Action
-    </label>
-  </div>
-  <div class="radio">
-    <label>
-      <input type="radio" name="category" id="category4" value="Romance">Romance
-    </label>
-  </div>
-  <div class="radio">
-    <label>
-      <input type="radio" name="category" id="category5" value="Sport">Sport
-    </label>
-  </div>
-  <div class="radio">
-    <label>
-      <input type="radio" name="category" id="category6" value="Crime">Crime
-    </label>
-  </div>
-  <div class="radio">
-    <label>
-      <input type="radio" name="category" id="category7" value="Comedy">Comedy
-    </label>
-  </div>
-  <div class="radio">
-    <label>
-      <input type="radio" name="category" id="category8" value="Adventure">Adventure
-    </label>
-  </div>
-  <div class="radio">
-    <label>
-      <input type="radio" name="category" id="category9" value="Travel">Travel
-    </label>
-  </div>
+  <select name="category">
+    <option value="" selected="selected"></option>
+    <option value="Historical Fiction">Historical Fiction</option>
+    <option value="Drama">Drama</option>
+    <option value="Action">Action</option>
+    <option value="Romance">Romance</option>
+    <option value="Sport">Sport</option>
+    <option value="Crime">Crime</option>
+    <option value="Comedy">Comedy</option>
+    <option value="Adventure">Adventure</option>
+    <option value="Travel">Travel</option>
+  </select>
+  
   </br>
-  <input type="submit" value ="create">
+  <input type="submit" value ="Create">
   <a href = "{{url_for('showCatalog')}}"><button type="button">Cancel</button></a>
   </br></br>
 </form>

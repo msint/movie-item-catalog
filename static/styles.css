@@ -1,14 +1,20 @@
 body {
 	width: 1000px;
 }
+nav {
+	border-bottom: 2px solid black;
+	padding: 15px;
+}
 #sidebar {
     float: left;
-    width: 148px;
+    width: 300px;
     height: 500px;
+		padding: 1em;
     border-right: 2px solid black;
 }
 section {
     float: left;
+		padding-top: 20px;
     width: 830px;
     margin-left: 20px;
 }

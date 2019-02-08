@@ -12,7 +12,7 @@
     {% endfor %}
 </aside>
 <section>
-  <h3> Latest Items </h3>
+  <h3> Latest Items: </h3>
     {% for movie in latestMovies %}
       <ul>
         <a href = "{{url_for('movieDetail', category = movie.category, movieID = movie.movieID)}}">{{movie.movieName}} ( {{movie.category}} )</a>

@@ -29,8 +29,8 @@
     <option value="Travel">Travel</option>
   </select>
   </br>
-  <input type="submit" value ="update">
-  <a href = "{{url_for('showCatalog')}}"><button type="button">Cancel</button></a>
+  <input type="submit" value ="Update">
+  <a href = "{{url_for('movieDetail', category=movie.category, movieID=movie.movieID)}}"><button type="button">Cancel</button></a>
   </br></br>
 </form>
 
