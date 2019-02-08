@@ -110,8 +110,43 @@ def newMovie():
 
 # Edit the detail of one movie
 @app.route('/catalog/<string:category>/<int:movieID>/edit/', methods=['GET', 'POST'])
-def editMovieDetail(category, movieID):
-    return "This is to edit the detail of %s movie " % category + str(movieID)
+def editMovie(category, movieID):
+    editMovie = session.query(Movie).filter_by(category=category, movieID=movieID).first()
+
+    #check if the user is the owner of this movie
+    if editMovie.userId != login_session['userId']:
+        flash("Sorry! You are not the owner of this movie. Only the owner can edit it.")
+        return redirect(url_for('showCatalog'))
+
+    if request.method == 'POST':
+        #if user makes any changes, replace the existing one
+        if request.form['movieName'] != "":
+            editMovie.movieName = request.form['movieName']
+
+        if request.form['directorName'] != "":
+            editMovie.directorName = request.form['directorName']
+
+        if request.form['description'] != "":
+            editMovie.description = request.form['description']
+
+        if request.form['category'] != "":
+            editMovie.category = request.form['category']
+
+        if request.form['movieName']=="" and \
+           request.form['directorName']=="" and \
+           request.form['description']=="" and \
+           request.form['category'] == "":
+           flash("You did not make any changes.")
+           return render_template('editItem.html', movie=editMovie)
+
+        session.add(editMovie)
+        session.commit()
+        flash("Movie item is updated successfully!")
+        return redirect(url_for('movieDetail', category=editMovie.category, \
+                                 movieID=editMovie.movieID))
+    else:
+        return render_template('editItem.html', movie=editMovie)
+    #return "This is to edit the detail of %s movie " % category + str(movieID)
 
 # Delete the movie
 @app.route('/catalog/<string:category>/<int:movieID>/delete/', methods=['GET', 'POST'])

@@ -1,0 +1,37 @@
+{% extends "mainPage.html" %}
+{% block content %}
+{% include "header.html" %}
+{% include "flash.html" %}
+
+<h1 class="header">Edit Movie Item</h1>
+<form action="{{url_for('editMovie',category=movie.category, movieID=movie.movieID)}}"
+  method="POST">
+  <label for="movieName">Movie Name:</label>
+  <input type ="text" maxlength="30" class="form-control" name="movieName" placeholder='{{movie.movieName}}'>
+
+  <label for="directorName">Director Name:</label>
+  <input type ="text" maxlength="30" class="form-control" name="directorName" placeholder='{{movie.directorName}}'>
+
+  <label for="description">Description:</label>
+  <textarea class="form-control" maxlength="250" rows="3" name="description" placeholder='{{movie.description}}'></textarea>
+
+  <label for="category">Genres:</label>
+  <select name="category">
+    <option value="" selected="selected"></option>
+    <option value="Historical Fiction">Historical Fiction</option>
+    <option value="Drama">Drama</option>
+    <option value="Action">Action</option>
+    <option value="Romance">Romance</option>
+    <option value="Sport">Sport</option>
+    <option value="Crime">Crime</option>
+    <option value="Comedy">Comedy</option>
+    <option value="Adventure">Adventure</option>
+    <option value="Travel">Travel</option>
+  </select>
+  </br>
+  <input type="submit" value ="update">
+  <a href = "{{url_for('showCatalog')}}"><button type="button">Cancel</button></a>
+  </br></br>
+</form>
+
+{% endblock %}
