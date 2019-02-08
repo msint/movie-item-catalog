@@ -71,7 +71,7 @@ Install the following applications in order to run the program.
 
 ## Usage: Screenshot
   * Homepage is http://localhost:8000 or http://localhost:8000/catalog
-  > [![Image](png/homepage.png)](Image)
+  > [![Image](png/homePage.png)](Image)
   > [![Image](png/homePage_userLogin.png)](Image)
 
   * Others screenshot as follow:
