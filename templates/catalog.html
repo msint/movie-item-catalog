@@ -1,8 +1,10 @@
+<!-- author: May Wong -->
 {% extends "mainPage.html" %}
 {% block content %}
 {% include "header.html" %}
 {% include "flash.html" %}
 
+<!-- This page is for the login user -->
 <aside id="sidebar">
   <h3> Categories: </h3>
     {% for category in categories %}
@@ -22,6 +24,4 @@
       </ul>
     {% endfor %}
 </section>
-
-
 {% endblock %}

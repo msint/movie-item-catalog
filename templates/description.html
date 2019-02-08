@@ -1,16 +1,16 @@
+<!-- author: May Wong -->
 {% extends "mainPage.html" %}
 {% block content %}
 {% include "header.html" %}
 {% include "flash.html" %}
 
+<!-- This page is for login user -->
 <div class="jumbotron card card-container">
 
   <h3> {{movie.movieName}} </h3>
   <p> Description: {{movie.description}} </p>
   </br>
   <a href = "{{url_for('editMovie', category=movie.category, movieID=movie.movieID)}}"><button type="button">Edit</button></a>
-<!--  <a href = "{{url_for('editMovie', category=movie.category, movieID=movie.movieID)}}">Edit </a>
-  <a href = "{{url_for('deleteMovie', category=movie.category, movieID=movie.movieID)}}">Delete</a> -->
   <a href = "{{url_for('deleteMovie', category=movie.category, movieID=movie.movieID)}}"><button type="button">Delete</button></a>
 </div>
 {% endblock %}

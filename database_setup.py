@@ -1,4 +1,7 @@
 #!/usr/bin/env python
+
+# author: May Wong
+# This file is to set up the database and create the User and Movie tables.
 from sqlalchemy import Column, ForeignKey, Integer, String
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship
@@ -6,8 +9,10 @@ from sqlalchemy import create_engine
 
 Base = declarative_base()
 
+
 # class to store user info
 class User(Base):
+
     __tablename__ = 'user'
 
     id = Column(Integer, primary_key=True)
@@ -19,6 +24,7 @@ class User(Base):
 
 # class to store Movie info
 class Movie(Base):
+
     __tablename__ = "movie"
 
     movieID = Column(Integer, primary_key=True)
@@ -40,6 +46,7 @@ class Movie(Base):
             'category': self.category,
             'description': self.description
         }
+
 
 engine = create_engine('sqlite:///MovieCatalog.db')
 Base.metadata.create_all(engine)

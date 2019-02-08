@@ -1,8 +1,10 @@
+<!-- author: May Wong -->
 {% extends "mainPage.html" %}
 {% block content %}
 {% include "header.html" %}
 {% include "flash.html" %}
 
+<!-- This is the public page for all -->
 <aside id="sidebar">
   <h3> Categories: </h3>
     {% for category in categories %}
@@ -15,10 +17,10 @@
   <h3> Latest Items: </h3>
     {% for movie in latestMovies %}
       <ul>
-        <a href = "{{url_for('movieDetail', category = movie.category, movieID = movie.movieID)}}">{{movie.movieName}} ( {{movie.category}} )</a>
+        <a href = "{{url_for('movieDetail', category = movie.category,movieID = movie.movieID)}}">{{movie.movieName}} ( {{movie.category}} )
+        </a>
       </ul>
     {% endfor %}
 </section>
-
 
 {% endblock %}

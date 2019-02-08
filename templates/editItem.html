@@ -1,8 +1,10 @@
+<!-- author: May Wong -->
 {% extends "mainPage.html" %}
 {% block content %}
 {% include "header.html" %}
 {% include "flash.html" %}
 
+<!-- This page is for login user -->
 <h1 class="header">Edit Movie Item</h1>
 <form action="{{url_for('editMovie',category=movie.category, movieID=movie.movieID)}}"
   method="POST">

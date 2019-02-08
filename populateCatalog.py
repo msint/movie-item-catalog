@@ -1,7 +1,9 @@
 #!/usr/bin/env python
+
+# author: May Wong
+# This file is to add the movie item data to database
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
-
 from database_setup import Base, User, Movie
 
 engine = create_engine('sqlite:///MovieCatalog.db')
@@ -29,7 +31,7 @@ session.commit()
 movie1 = Movie(movieName="Princess Agents",
                directorName="Wu Jinyuan",
                category="Historical Fiction",
-               description="In a time of civil war, a maid enters the royal "\
+               description="In a time of civil war, a maid enters the royal "
                + "household and starts training to become a soldier.",
                userId=1)
 session.add(movie1)
@@ -47,7 +49,7 @@ session.commit()
 movie3 = Movie(movieName="The Fast and the Furious",
                directorName="Vin Diesel",
                category="Action",
-               description="The Fast and the Furious is an American street "\
+               description="The Fast and the Furious is an American street "
                + "racing action film.",
                userId=1)
 session.add(movie3)

@@ -1,8 +1,10 @@
+<!-- author: May Wong -->
 {% extends "mainPage.html" %}
 {% block content %}
 {% include "header.html" %}
 {% include "flash.html" %}
 
+<!-- This page is for loggin user -->
 <h1 class="header">Delete Movie Item</h1>
 <p>Are you sure you want to delete {{movie.movieName}} from {{movie.category}}?</p>
 <form action="{{url_for('deleteMovie', category=movie.category, movieID=movie.movieID)}}" method="POST">
