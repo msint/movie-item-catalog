@@ -1,0 +1,24 @@
+{% extends "mainPage.html" %}
+{% block content %}
+{% include "header.html" %}
+{% include "flash.html" %}
+
+<aside id="sidebar">
+  <h3> Categories: </h3>
+    {% for category in categories %}
+      <ul>
+         <a href = "{{url_for('queryCategory', category = category)}}">{{category}}</a>
+      </ul>
+    {% endfor %}
+</aside>
+<section>
+  <h3> Latest Items </h3>
+    {% for movie in latestMovies %}
+      <ul>
+        <a href = "{{url_for('movieDetail', category = movie.category, movieID = movie.movieID)}}">{{movie.movieName}} ( {{movie.category}} )</a>
+      </ul>
+    {% endfor %}
+</section>
+
+
+{% endblock %}

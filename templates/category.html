@@ -1,0 +1,23 @@
+{% extends "mainPage.html" %}
+{% block content %}
+{% include "header.html" %}
+{% include "flash.html" %}
+
+<aside id="sidebar">
+  <h3> Categories: </h3>
+    {% for c in categories %}
+      <ul>
+         <a href = "{{url_for('queryCategory', category = c)}}">{{c}}</a>
+      </ul>
+    {% endfor %}
+</aside>
+<section>
+    <h3> {{category}} </h3>
+    {% for m in movieItems %}
+      <ul>
+         {{m.movieName}}
+      </ul>
+    {% endfor %}
+</section>
+
+{% endblock %}

@@ -33,26 +33,47 @@ Base.metadata.bind = engine
 DBSession = sessionmaker(bind=engine)
 session = DBSession()
 
+# helper method to query all movie categories
+def queryAllCateogries():
+    movies = session.query(Movie).all()
+    categories = []
+    for movie in movies:
+        if movie.category not in categories:
+            categories.append(movie.category)
+    return categories
+
+
 # Main page to show movies catalog
 @app.route('/')
 @app.route('/catalog/')
 def showCatalog():
-    movies = session.query(Movie).all()
+    #movies = session.query(Movie).all()
+    categories = queryAllCateogries()
+    latestMovies = session.query(Movie).order_by(
+        Movie.movieID.desc()).limit(10)
     if 'username' not in login_session:
-        return render_template('catalog.html', movies=movies)
+        return render_template('publicCatalog.html', categories=categories, latestMovies=latestMovies)
     else:
-        return render_template('catalog.html', movies=movies)
+        return render_template('catalog.html', categories=categories, latestMovies=latestMovies)
     #return render_template('catalog.html', movies=movies)
 
 # Query all movie items in one category
 @app.route('/catalog/<string:category>/')
 def queryCategory(category):
-    return "This is to query all movie items in %s category in catalog." % category
+    categories = queryAllCateogries()
+    movieItems = session.query(Movie).filter_by(category=category).all()
+    return render_template('category.html', movieItems=movieItems, category=category, categories=categories)
+    #return "This is to query all movie items in %s category in catalog." % category
 
 # Show the detail of one movie
 @app.route('/catalog/<string:category>/<int:movieID>/')
 def movieDetail(category, movieID):
-    return "This is to show the detail of movie item " + str(movieID) + " in %s ." % category
+    movie = session.query(Movie).filter_by(category=category, movieID=movieID).first()
+    if 'username' not in login_session:
+        return render_template('publicDescription.html', movie=movie)
+    else:
+        return render_template('description.html', movie=movie)
+    #return "This is to show the detail of movie item " + str(movieID) + " in %s ." % category
 
 
 # Add a new movie in the catalog
@@ -84,7 +105,7 @@ def queryCategoryJSON(category):
     #return "This is the JSON to query all %s movie items in catalog." % category
 
 @app.route('/catalog/<string:category>/<int:movieID>.json/')
-def movieJSON(category, movieID):
+def movieDetailJSON(category, movieID):
     movie = session.query(Movie).filter_by(category=category, movieID=movieID).first()
     return jsonify(Movie=movie.serialize)
     #return "This is the JSON to show the detail of %s movie item "% category + str(movieID)

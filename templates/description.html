@@ -1,0 +1,12 @@
+{% extends "mainPage.html" %}
+{% block content %}
+{% include "header.html" %}
+{% include "flash.html" %}
+
+<div class="jumbotron card card-container">
+
+  <h3> {{movie.movieName}} </h3>
+  <p> Description: {{movie.description}} </p>
+
+
+{% endblock %}

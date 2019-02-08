@@ -1,18 +1,29 @@
+body {
+	width: 1000px;
+}
+#sidebar {
+    float: left;
+    width: 148px;
+    height: 500px;
+    border-right: 2px solid black;
+}
+section {
+    float: left;
+    width: 830px;
+    margin-left: 20px;
+}
 
 .btn {
 	padding: 20px;
 	margin: 0;
 	border-color: #9FB80A;
-	border-width: 2px;
+	border-width: 5px;
 	color: #9FB80A;;
 }
 .glyphicon {
 	margin-right: 10px;
 }
-.top-menu {
-	padding-top: 30px;
-	padding-bottom: 30px;
-}
+
 .flash {
 	background-color: #98FB98;
 	width:100%;
